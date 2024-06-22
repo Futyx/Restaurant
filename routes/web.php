@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\MenueController;
+use App\Http\Controllers\OrderingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +32,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('menue', []);
+Route::get('menu', [MenueController::class, 'index'])->name('menu');
+Route::get('ordering', [OrderingController::class, 'index'])->name('ordering');
+Route::get('gallery', [GalleryController::class, 'index'])->name('gallery');
+Route::get('about', [AboutUsController::class, 'index'])->name('about');
+Route::get('contact', [AboutUsController::class, 'index'])->name('contact');
 
 require __DIR__.'/auth.php';

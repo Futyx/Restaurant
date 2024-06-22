@@ -11,7 +11,7 @@ class FoodController extends Controller
      */
     public function index()
     {
-        //
+        return $this->view('food.list');
     }
 
     /**
