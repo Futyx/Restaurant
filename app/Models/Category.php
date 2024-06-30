@@ -13,8 +13,8 @@ class Category extends Model
         'id'
     ];
 
-    public function product(){
-
-        return $this->b
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'category');
     }
 }

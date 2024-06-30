@@ -11,7 +11,7 @@ class AboutUsController extends Controller
      */
     public function index()
     {
-        return $this->view('about');
+        return view('about');
     }
 
     /**

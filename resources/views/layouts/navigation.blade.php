@@ -24,8 +24,8 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('ordering')" :active="request()->routeIs('ordering')">
-                        {{ __('Ordering') }}
+                    <x-nav-link :href="route('order')" :active="request()->routeIs('order')">
+                        {{ __('Orders') }}
                     </x-nav-link>
                 </div>
 
@@ -37,13 +37,13 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                        {{ __('About us') }}
+                        {{ __('About') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
-                        {{ __('contact us') }}
+                        {{ __('Contact') }}
                     </x-nav-link>
                 </div>
 

@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
-class MenueController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return $this->view('menu');
+        $menus = Menu::all();
+        $categories = Category::all();
+        return view('menu.list',['menus'=> $menus, 'categories'=> $categories]);
     }
 
     /**

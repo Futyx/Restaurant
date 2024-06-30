@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('phone');
             $table->integer('order_id')->nullable();
             $table->timestamps();
+            
         });
     }
 

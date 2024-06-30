@@ -12,4 +12,16 @@ class Order extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function menu(){
+
+        return $this->hasMany(Menu::class, 'menu_id');
+        
+    }
+
+    public function user(){
+
+        return $this->hasOne(User::class, 'user_id');
+        
+    }
 }

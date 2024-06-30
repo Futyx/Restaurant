@@ -14,15 +14,18 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->decimal('total_price');
-            $table->decimal('discount')->nullable();
-            $table->integer('product_id');
-            $table->integer('user_id');
+            $table->float('sub_total');
+            $table->decimal('menu_id')->nullable();
+            $table->integer('user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->integer('customer_id')->nullable();
             $table->string('description')->nullable();
-            $table->boolean('paid')->default(0);
-            $table->boolean('deliverde')->default(0);
-            $table->boolean('canceled')->default(0);
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('phone');
+            $table->text('address');
+            $table->enum('status',['new','process','delivered','cancel'])->default('new');
+            $table->enum('payment_status',['paid','unpaid'])->default('unpaid');
+            $table->boolean('reorder')->default(0);
             $table->timestamps();
         });
     }

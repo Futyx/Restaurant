@@ -1,3 +1,6 @@
+
+@import "https://cdn.jsdelivr.net/gh/rastikerdar/shabnam-font@v5.0.1/dist/font-face.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

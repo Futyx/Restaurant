@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Customer extends Model
 {
@@ -12,4 +13,19 @@ class Customer extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'order_id');
+    }
+
+    public function latestOrder(): HasOne
+    {
+        return $this->hasOne(Order::class)->latestOfMany();
+    }
+
+    public function favoriteOrder(): HasOne
+    {
+        return $this->hasOne(Order::class)->ofMany('amount', 'max');
+    }
 }

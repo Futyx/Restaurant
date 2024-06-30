@@ -12,4 +12,8 @@ class Menu extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function categories(){
+        return $this->belongsToMany(Category::class, 'category_id');
+      }
 }

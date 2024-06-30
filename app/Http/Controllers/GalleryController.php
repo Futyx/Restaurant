@@ -11,7 +11,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        return $this->view('gallery');
+        return view('gallery');
     }
 
     /**

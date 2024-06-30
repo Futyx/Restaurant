@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
-class FoodController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return $this->view('food.list');
+        $order = Order::all();
+        return view('order.list',['order'=> $order]);
     }
 
     /**
