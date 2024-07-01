@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GuidController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderingController;
@@ -40,8 +41,7 @@ Route::get('contact', [AboutUsController::class, 'index'])->name('contact');
 Route::get('menu', [MenuController::class, 'index'])->name('menu');
 Route::get('order', [OrderController::class, 'index'])->name('order');
 
-Route::get('/tguid', function () {
-    return view('tailwind.guid');
-});
+Route::get('guid', [GuidController::class, 'index'])->name('guid');
+
 
 require __DIR__.'/auth.php';

@@ -5,12 +5,15 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
+use App\Models\Menu;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,8 +30,11 @@ class CategoryResource extends Resource
         return $form
             ->schema([
                 TextInput::make('title'),
-                TextInput::make('description'),
-                FileUpload::make('icon')
+                Select::make('menu_id')
+                ->label('menu')
+                ->options(Menu::all()->pluck('name'))
+                ->searchable(),
+                FileUpload::make('icon')->nullable()
             ]);
     }
 
@@ -36,8 +42,10 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('icon')->circular(),
                 TextColumn::make('title'),
                 TextColumn::make('description'),
+
             ])
             ->filters([
                 //

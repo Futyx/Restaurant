@@ -1,32 +1,25 @@
 <x-app-layout>
-    <div class="flex py-4">
-        <div class="w-1/4 bg-pink-500 text-white text-center py-4">Sidebar</div>
-        <div class="flex-1 bg-gray-200 text-center ">
-            <div class="flex flex-col">
-                <div class="bg-purple-500 text-white text-center py-4">
-                    Top Section
-                </div>
-                <div class="flex flex-col md:flex-row">
-                    <div class="w-full md:w-2/3 bg-yellow-500 text-white text-center">
-                        <div class="grid grid-cols-3 gap-4">
-                            <div class="box-border h-32 w-32 p-4 border-4 bg-blue-500 text-white text-center py-4">Column 1</div>
-                            <div class="bg-gray-500 text-center py-4">Column 2</div>
-                            <div class="bg-blue-900 text-white text-center py-4">Column 3</div>
-                        </div>
+    <div class="relative z-10 mx-auto max-w-md">
 
-                    </div>
-                    <div class="w-full md:w-1/2 bg-gray-200 text-center ">
-                        <div class=" h-64 flex items-center justify-center bg-green-500 text-white">
-                            Centered Content
+        @foreach($categories as $category)
 
-                            
-
-
-                        </div>
-                    </div>
-                </div>
+        <article class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 max-w-sm mx-auto mt-24">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWeECgpU7ndozaDY-cS3QKLjvSL7stKvYsOQ&s" alt="University of Southern California" class="absolute inset-0 h-full w-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+            <h3 class="z-10 mt-3 text-3xl font-bold text-white">{{ $category->title}}</h3>
+            @foreach($menus as $menu)
+            @if($menu->category_id == $category->id)
+            <div class="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+                {{$menu->name}}
             </div>
-        </div>
+            @endif
+
+            @endforeach
+        </article>
+
+        @endforeach
+
+
     </div>
 
 </x-app-layout>

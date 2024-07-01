@@ -13,6 +13,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,11 +33,10 @@ class MenuResource extends Resource
                 TextInput::make('price'),
                 TextInput::make('description'),
                 Select::make('category_id')
-                    ->label('category')
-                    ->options(Category::all()->pluck('title'))
-                    ->searchable(),
-                FileUpload::make('photo')
-
+                ->label('category')
+                ->options(Category::all()->pluck('title'))
+                ->searchable(),
+                FileUpload::make('photo')->nullable()
             ]);
     }
 
@@ -44,11 +44,14 @@ class MenuResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('photo')->circular(),
                 TextColumn::make('name'),
                 TextColumn::make('price'),
                 TextColumn::make('description'),
             ])
-            ->filters([])
+            ->filters([
+                //
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -58,6 +61,7 @@ class MenuResource extends Resource
                 ]),
             ]);
     }
+
 
     public static function getRelations(): array
     {
