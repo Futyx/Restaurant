@@ -11,7 +11,6 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
 
-                    سلام کسخل
                 </div>
             </div>
         </div>
