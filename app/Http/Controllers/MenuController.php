@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Menu;
+use App\Models\MenuCategory;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -13,9 +14,13 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::all();
+                $menus = Menu::all();
+       
+
         $categories = Category::all();
-        return view('menu.list',['menus'=> $menus, 'categories'=> $categories]);
+
+       
+        return view('menu.list', ['menus' => $menus, 'categories' => $categories]);
     }
 
     /**
@@ -31,7 +36,6 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-       
     }
 
     /**

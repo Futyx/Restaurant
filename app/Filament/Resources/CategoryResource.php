@@ -30,10 +30,6 @@ class CategoryResource extends Resource
         return $form
             ->schema([
                 TextInput::make('title'),
-                Select::make('menu_id')
-                ->label('menu')
-                ->options(Menu::all()->pluck('name'))
-                ->searchable(),
                 FileUpload::make('icon')->nullable()
             ]);
     }
@@ -44,7 +40,6 @@ class CategoryResource extends Resource
             ->columns([
                 ImageColumn::make('icon')->circular(),
                 TextColumn::make('title'),
-                TextColumn::make('description'),
 
             ])
             ->filters([

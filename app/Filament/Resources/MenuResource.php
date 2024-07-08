@@ -34,7 +34,7 @@ class MenuResource extends Resource
                 TextInput::make('description'),
                 Select::make('category_id')
                 ->label('category')
-                ->options(Category::all()->pluck('title'))
+                ->options(Category::all()->pluck('title', 'id'))
                 ->searchable(),
                 FileUpload::make('photo')->nullable()
             ]);
@@ -47,6 +47,7 @@ class MenuResource extends Resource
                 ImageColumn::make('photo')->circular(),
                 TextColumn::make('name'),
                 TextColumn::make('price'),
+                TextColumn::make('category_id'),
                 TextColumn::make('description'),
             ])
             ->filters([

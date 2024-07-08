@@ -14,13 +14,15 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->float('price');
+            $table->integer('category_id')->nullable();
+            // $table->unsignedBigInteger('category_id');
+            // $table->foreign('category_id')->references('id')->on('categories');
             $table->text('photo')->nullable();
             $table->string('slug')->unique()->nullable();
             $table->text('description')->nullable();
             $table->decimal('discount')->nullable();
-            $table->integer('category_id')->nullable();
             $table->boolean('popular')->default(0);
             $table->timestamps();
         });
