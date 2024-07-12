@@ -8,16 +8,20 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
-
+    darkMode: 'class',
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 shabnam: ['Shabnam']
             },
+            boxShadow: {
+                neon: "0 0 5px theme('colors.purple.200'), 0 0 20px theme('colors.purple.700')"
+            },
+            
         },
     },
 
-    
+
     plugins: [forms],
 };

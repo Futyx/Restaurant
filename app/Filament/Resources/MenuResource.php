@@ -7,6 +7,7 @@ use App\Filament\Resources\MenuResource\RelationManagers;
 use App\Models\Category;
 use App\Models\Menu;
 use Filament\Forms;
+use Filament\Forms\Components\BelongsToSelect as ComponentsBelongsToSelect;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -18,6 +19,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Livewire\Attributes\Title;
+use Filament\Resources\Forms\Components\BelongsToSelect;
 
 class MenuResource extends Resource
 {
@@ -33,9 +36,10 @@ class MenuResource extends Resource
                 TextInput::make('price'),
                 TextInput::make('description'),
                 Select::make('category_id')
-                ->label('category')
-                ->options(Category::all()->pluck('title', 'id'))
-                ->searchable(),
+                    ->label('category')
+                    
+                    ->options(Category::all()->pluck('title', 'id'))
+                    ->searchable(),
                 FileUpload::make('photo')->nullable()
             ]);
     }

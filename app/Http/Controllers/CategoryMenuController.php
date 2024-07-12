@@ -2,35 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
-use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class OrderController extends Controller
+class CategoryMenuController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $orders = DB::table('orders')->get();
-        // foreach($orders as $order){
-        //     $menus = Order::find(1)->menus;
-        //     foreach($menus as $menu){
-        //         dd($menu->name) ;
-        //     }
-
-        // }
-        // $order = new Order;
-        // $order->user_id = 1;
-        // $order->save();
-
-        // // $menus = Menu::whereIn('id', [1, 2, 3])->get(); 
-        // $order->menus()->attach([1, 2]);
-
-        // dd($order);
-        return view('order.list', ['orders' => $orders]);
+        //
     }
 
     /**
@@ -38,7 +19,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

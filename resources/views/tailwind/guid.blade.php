@@ -1,25 +1,33 @@
 <x-app-layout>
-    <div class="relative z-10 mx-auto max-w-md">
+    <div class="bg-[url('https://i.postimg.cc/SRmfCbsp/IMG-9995-1.jpg')] bg-fixed bg-cover bg-no-repeat bg-center min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
 
-        @foreach($categories as $category)
+        <div class="grid grid-cols-2  place-content-end">
+            <div class="dark:bg-gray-800 flex justify-center items-center">
+                <fieldset class="text-xl w-2/3 border-2 border-indigo-400 shadow-neon rounded-lg px-4 py-2">
+                <legend class="px-1 font-semibold text-white">منو</legend>
 
-        <article class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 max-w-sm mx-auto mt-24">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWeECgpU7ndozaDY-cS3QKLjvSL7stKvYsOQ&s" alt="University of Southern California" class="absolute inset-0 h-full w-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-            <h3 class="z-10 mt-3 text-3xl font-bold text-white">{{ $category->title}}</h3>
-            @foreach($menus as $menu)
-            @if($menu->category_id == $category->id)
-            <div class="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
-                {{$menu->name}}
+                @foreach($categories as $category)
+                <legend class="px-1 font-semibold pt-4  text-white"> {{ $category->title}}</legend>
+                    <div class="flex flex-col p-2 gap-2 text-base text-white dark:text-gray-200">
+                        @foreach($menus as $menu)
+                        @if($menu->category_id == $category->id)
+                        <div class="flex items-center justify-between space-y-2">
+                            <span class="flex-shrink-0 text-lg text-white"> {{$menu->name}}</span>
+                            <span class="border-b-4 border-dotted border-teal-200 flex-grow"></span>
+                            <span class="flex-shrink-0 text-lg text-white font-mono"> {{$menu->price}}</span>
+                        </div>
+                        @endif
+                        @endforeach
+
+                        @endforeach
+                    </div>
+                    
+                </fieldset>
             </div>
-            @endif
-
-            @endforeach
-        </article>
-
-        @endforeach
 
 
+
+        </div>
     </div>
 
 </x-app-layout>

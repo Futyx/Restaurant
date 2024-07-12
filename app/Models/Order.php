@@ -13,15 +13,25 @@ class Order extends Model
         'id'
     ];
 
-    public function menu(){
+    protected $fillable = [
+        'menu_id',
+        'status',
+        'sub_total'
+    ];
+    public function menus(){
 
-        return $this->hasMany(Menu::class, 'menu_id');
+        return $this->belongsToMany(Menu::class, 'menu_id');
         
     }
 
     public function user(){
 
-        return $this->hasOne(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
+        
+    }
+    public function customer(){
+
+        return $this->belongsTo(Customer::class, 'customer_id');
         
     }
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\CategoryMenu;
 use App\Models\Menu;
 use App\Models\MenuCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
@@ -14,12 +16,11 @@ class MenuController extends Controller
      */
     public function index()
     {
-                $menus = Menu::all();
-       
+        $menus = DB::table('menus')->get();
 
-        $categories = Category::all();
+        $categories = DB::table('categories')->get();
+        
 
-       
         return view('menu.list', ['menus' => $menus, 'categories' => $categories]);
     }
 
@@ -36,6 +37,13 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
+        $catmen = new CategoryMenu();
+ 
+        $catmen->category_id = $request->category_id;
+        $catmen->menu_id = $request->id;
+ 
+        $catmen->save();
+ 
     }
 
     /**

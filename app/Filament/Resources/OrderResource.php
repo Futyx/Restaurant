@@ -31,6 +31,7 @@ class OrderResource extends Resource
                 TextInput::make('user_id')
                     ->label('user'),
                 Select::make('menu_id')
+                    ->multiple()
                     ->label('product')
                     ->options(Menu::all()->pluck('name')),
                 Select::make('status')
@@ -52,6 +53,11 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
+
+                TextColumn::make('title'),
+                TextColumn::make('user_id')->label('user'),
+                TextColumn::make('status'),
+                TextColumn::make('menu_id')->label('items'),
 
             ])
             ->filters([

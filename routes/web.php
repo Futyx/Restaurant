@@ -35,11 +35,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('order', [OrderController::class, 'index'])->name('order');
-Route::get('gallery', [GalleryController::class, 'index'])->name('gallery');
 Route::get('about', [AboutUsController::class, 'index'])->name('about');
 Route::get('contact', [AboutUsController::class, 'index'])->name('contact');
 Route::get('menu', [MenuController::class, 'index'])->name('menu');
-Route::get('order', [OrderController::class, 'index'])->name('order');
+Route::post('order', [MenuController::class, 'create'])->name('order');
 
 Route::get('guid', [GuidController::class, 'index'])->name('guid');
 

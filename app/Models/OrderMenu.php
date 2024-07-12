@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class OrderMenu extends Model
 {
     use HasFactory;
 
@@ -13,10 +13,9 @@ class Category extends Model
         'id'
     ];
 
-    public function menus()
-    {
-
-        return $this->belongsToMany(Menu::class);
-    }
-    
+    protected $fillable = [
+        'menu_id',
+        'order_id',
+        
+    ];
 }
