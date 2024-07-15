@@ -19,4 +19,15 @@ class CategoryMenu extends Model
         'menu_id',
         'updated_at',
     ];
+
+    public function category(){
+
+        return $this->hasOne(Category::class,'id', 'category_id');
+    }
+
+    public function menu(){
+
+        return $this->hasOne(Menu::class,'id', 'menu_id');
+    }
 }
+

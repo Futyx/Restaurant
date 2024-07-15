@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     @foreach($categories as $category)
-                    <legend class="px-1 font-semibold pt-4  text-white"> {{ $category->title}}</legend>
+                    <legend class="px-1 font-semibold pt-4  text-white"> {{ $category->name}}</legend>
                     <div class="flex flex-col p-2 gap-2 text-base text-white dark:text-gray-200">
                         @foreach($menus as $menu)
                         @if($menu->category_id == $category->id)

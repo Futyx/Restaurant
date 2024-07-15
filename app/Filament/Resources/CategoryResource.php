@@ -33,7 +33,7 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title'),
+                TextInput::make('name'),
                 FileUpload::make('icon')->nullable()
             ]);
     }
@@ -43,7 +43,7 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('icon')->circular(),
-                TextColumn::make('title'),
+                TextColumn::make('name'),
 
             ])
             ->filters([

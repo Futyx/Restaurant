@@ -20,7 +20,7 @@ class Order extends Model
     ];
     public function menus(){
 
-        return $this->belongsToMany(Menu::class, 'menu_id');
+        return $this->hasMany(Menu::class, 'menu_id');
         
     }
 
@@ -31,7 +31,7 @@ class Order extends Model
     }
     public function customer(){
 
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(Customer::class,'id', 'customer_id');
         
     }
 }

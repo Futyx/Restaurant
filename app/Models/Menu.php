@@ -40,9 +40,9 @@ class Menu extends Model
         return $this->belongsToMany(Category::class);
         
     }
-    public function orders(){
+    public function order(){
 
-        return $this->belongsToMany(Order::class);
+        return $this->belongsTo(Order::class);
         
     }
     

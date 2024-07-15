@@ -35,11 +35,6 @@ class MenuResource extends Resource
                 TextInput::make('name'),
                 TextInput::make('price'),
                 TextInput::make('description'),
-                Select::make('category_id')
-                    ->label('category')
-                    
-                    ->options(Category::all()->pluck('title', 'id'))
-                    ->searchable(),
                 FileUpload::make('photo')->nullable()
             ]);
     }
@@ -71,7 +66,8 @@ class MenuResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\CategoriesRelationManager::class,
+
         ];
     }
 
