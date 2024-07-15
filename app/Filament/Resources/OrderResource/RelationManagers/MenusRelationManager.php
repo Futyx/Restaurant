@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\OrderResource\RelationManagers;
 
-use App\Models\Customer;
+use App\Models\Menu;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -11,20 +11,20 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CustomersRelationManager extends RelationManager
+class MenusRelationManager extends RelationManager
 {
-    protected static string $relationship = 'customers';
+    protected static string $relationship = 'menus';
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('menus.name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Select::make('customer_id')
-                    ->label('customer')
-                    ->options(Customer::get()->pluck('name', 'id'))
+                    Forms\Components\Select::make('menu_id')
+                    ->label('menu')
+                    ->options(Menu::get()->pluck('name', 'id'))
                     ->searchable(),
             ]);
     }
@@ -34,8 +34,7 @@ class CustomersRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('customer.name'),
+                Tables\Columns\TextColumn::make('menus.name'),
             ])
             ->filters([
                 //

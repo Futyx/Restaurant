@@ -21,7 +21,7 @@ class Customer extends Model
     
     public function orders()
     {
-        return $this->hasMany(Order::class, 'order_id');
+        return $this->hasMany(Order::class);
     }
 
     public function latestOrder(): HasOne

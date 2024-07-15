@@ -20,9 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Customer::create([
-            'order_id' => 1,
+       
 
-        ]);
     }
 }

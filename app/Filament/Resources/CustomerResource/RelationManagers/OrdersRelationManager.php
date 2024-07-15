@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Filament\Resources\MenuResource\RelationManagers;
+namespace App\Filament\Resources\CustomerResource\RelationManagers;
 
-use App\Models\Category;
+use App\Models\Customer;
+use App\Models\Order;
 use Filament\Forms;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -12,32 +12,29 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CategoriesRelationManager extends RelationManager
+class OrdersRelationManager extends RelationManager
 {
-
-    protected static string $relationship = 'categories';
+    protected static string $relationship = 'orders';
 
     public function form(Form $form): Form
     {
-
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name'),
-                Forms\Components\Select::make('categories')
-                    ->label('category')
-                    ->options(Category::get()->pluck('name','id'))
-                    ->searchable()
-                    ->required(),
-                  
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                    Forms\Components\Select::make('order_id')
+                    ->label('orders')
+                    ->options(Order::get()->pluck('title'))
+                    ->searchable(),
             ]);
     }
 
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('name')
+            ->recordTitleAttribute('id')
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('id'),
             ])
             ->filters([

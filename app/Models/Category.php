@@ -16,7 +16,7 @@ class Category extends Model
     public function menus()
     {
 
-        return $this->belongsToMany(Menu::class);
+        return $this->belongsToMany(Menu::class,'id', 'menu_id');
     }
     
 }

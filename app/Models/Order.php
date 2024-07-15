@@ -20,18 +20,18 @@ class Order extends Model
     ];
     public function menus(){
 
-        return $this->hasMany(Menu::class, 'menu_id');
+        return $this->belongsToMany(Menu::class);
         
     }
 
     public function user(){
 
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
         
     }
     public function customer(){
 
-        return $this->belongsTo(Customer::class,'id', 'customer_id');
+        return $this->belongsTo(Customer::class);
         
     }
 }

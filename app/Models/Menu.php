@@ -37,13 +37,18 @@ class Menu extends Model
 
       public function categories(){
 
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, CategoryMenu::class);
         
     }
-    public function order(){
+    public function orders(){
 
-        return $this->belongsTo(Order::class);
+        return $this->belongsToMany(Order::class,'order_id');
         
+    }
+
+    public function categorymenus(){
+
+        return $this->hasmany(CategoryMenu::class);
     }
     
 

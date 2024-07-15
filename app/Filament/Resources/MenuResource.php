@@ -32,10 +32,14 @@ class MenuResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name'),
-                TextInput::make('price'),
+                TextInput::make('name')
+                    ->required(),
+                TextInput::make('price')
+                    ->required()
+                    ->numeric(),
                 TextInput::make('description'),
-                FileUpload::make('photo')->nullable()
+                FileUpload::make('photo')->nullable(),
+                
             ]);
     }
 
@@ -44,30 +48,27 @@ class MenuResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('photo')->circular(),
-                TextColumn::make('name'),
-                TextColumn::make('price'),
-                TextColumn::make('category_id'),
+                TextColumn::make('name')->sortable()->searchable(),
+                TextColumn::make('price')->sortable()->searchable(),
+                TextColumn::make('category_id')->label('category')->sortable()->searchable(),
                 TextColumn::make('description'),
             ])
             ->filters([
-                //
+                // Add any filters here
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-
 
     public static function getRelations(): array
     {
         return [
             RelationManagers\CategoriesRelationManager::class,
-
         ];
     }
 

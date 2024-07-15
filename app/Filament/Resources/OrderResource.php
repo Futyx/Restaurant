@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\MenuResource\RelationManagers\CategoriesRelationManager;
 use App\Filament\Resources\OrderResource\Pages;
-use App\Filament\Resources\OrderResource\RelationManagers;
+use App\Filament\Resources\OrderResource\RelationManagers\MenusRelationManager ;
 use App\Models\Menu;
 use App\Models\Order;
 use Filament\Forms;
@@ -29,12 +28,7 @@ class OrderResource extends Resource
         return $form
             ->schema([
                 TextInput::make('title'),
-                TextInput::make('user_id')
-                    ->label('user'),
-                Select::make('menu_id')
-                    ->multiple()
-                    ->label('product')
-                    ->options(Menu::all()->pluck('name')),
+
                 Select::make('status')
                     ->options([
                         'new' => 'new',
@@ -46,7 +40,8 @@ class OrderResource extends Resource
                     ->options([
                         'paid' => 'paid',
                         'unpaid' => 'unpaid',
-                    ])
+                    ]),
+             
             ]);
     }
 
@@ -57,8 +52,8 @@ class OrderResource extends Resource
 
                 TextColumn::make('title'),
                 TextColumn::make('user_id')->label('user'),
+                TextColumn::make('customer_id')->label('customer'),
                 TextColumn::make('status'),
-                TextColumn::make('menu_id')->label('items'),
 
             ])
             ->filters([
@@ -77,8 +72,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            CategoriesRelationManager::class,
-
+            MenusRelationManager::class,
         ];
     }
 
