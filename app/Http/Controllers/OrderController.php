@@ -6,6 +6,9 @@ use App\Models\Menu;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Darryldecode\Cart\Facades\Cart;
+use Illuminate\Support\Facades\Log;
+
 
 class OrderController extends Controller
 {
@@ -14,23 +17,59 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = DB::table('orders')->get();
-        // foreach($orders as $order){
-        //     $menus = Order::find(1)->menus;
-        //     foreach($menus as $menu){
-        //         dd($menu->name) ;
+
+        $userId = auth()->user()->id;
+
+        $cartItems = \Cart::session($userId)->getContent();
+
+
+        $newOrder = new Order;
+        $newOrder->user_id = $userId;
+        $newOrder->status = 'new';
+        $totalAmount = 0;
+
+        $newOrder->save();
+
+        foreach ($cartItems as $item) {
+            $menuNames =$cartItems->pluck('name')->all();
+
+             $menus = Menu::whereIn('name', $menuNames)->get();
+           
+                $totalAmount += $item->price * $item->quantity;
+                $newOrder->menus()->attach($menus);
+
+        }
+
+
+        $newOrder->total_amount = $totalAmount;
+
+        $newOrder->save();
+
+        // dd($cartItems->toArray());
+
+
+        // dd($newOrder->menus->toArray());
+
+
+
+        // foreach ($cartItems as $item) {
+
         //     }
+        //     $newOrder->total_amount = $totalAmount;
 
         // }
-        // $order = new Order;
-        // $order->user_id = 1;
-        // $order->save();
 
-        // // $menus = Menu::whereIn('id', [1, 2, 3])->get(); 
-        // $order->menus()->attach([1, 2]);
 
-        // dd($order);
-        return view('order.list', ['orders' => $orders]);
+        // dd($newOrder->toArray());
+
+        return view('order.list', compact('cartItems'));
+    }
+
+    public function allOrders()
+    {
+        $orders = Order::all();
+
+        return view('orders.all', compact('orders'));
     }
 
     /**
@@ -46,7 +85,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     
+        
+
+        
+
     }
 
     /**
@@ -54,7 +97,6 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**

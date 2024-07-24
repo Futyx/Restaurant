@@ -39,6 +39,12 @@ class MenuResource extends Resource
                     ->numeric(),
                 TextInput::make('description'),
                 FileUpload::make('photo')->nullable(),
+                Select::make('category_id')
+                ->label('category')
+                ->options(Category::get()->pluck('name', 'id'))
+                ->preload()
+                ->required(),
+
                 
             ]);
     }
@@ -50,7 +56,7 @@ class MenuResource extends Resource
                 ImageColumn::make('photo')->circular(),
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('price')->sortable()->searchable(),
-                TextColumn::make('category_id')->label('category')->sortable()->searchable(),
+                TextColumn::make('categories.name')->label('category')->sortable()->searchable(),
                 TextColumn::make('description'),
             ])
             ->filters([

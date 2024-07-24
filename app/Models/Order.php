@@ -13,14 +13,9 @@ class Order extends Model
         'id'
     ];
 
-    protected $fillable = [
-        'menu_id',
-        'status',
-        'sub_total'
-    ];
     public function menus(){
 
-        return $this->belongsToMany(Menu::class);
+        return $this->belongsToMany(Menu::class, 'menu_order');
         
     }
 

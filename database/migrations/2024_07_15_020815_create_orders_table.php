@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->float('total_amount')->default(0);
-            $table->integer('menu_id')->nullable();
             $table->integer('user_id')->nullable();
             $table->integer('customer_id')->nullable();
             $table->string('description')->nullable();

@@ -17,14 +17,6 @@ class Menu extends Model
     protected $guarded = [
         'id'
     ];
-
-    
-    protected $fillable = [
-        'slug',
-        'name',
-        'price'
-    ];
-
     
     public function sluggable(): array
     {
@@ -37,7 +29,7 @@ class Menu extends Model
 
       public function categories(){
 
-        return $this->belongsToMany(Category::class, CategoryMenu::class);
+        return $this->hasOne(Category::class,'id','category_id' );
         
     }
     public function orders(){
@@ -45,13 +37,5 @@ class Menu extends Model
         return $this->belongsToMany(Order::class,'order_id');
         
     }
-
-    public function categorymenus(){
-
-        return $this->hasmany(CategoryMenu::class);
-    }
-    
-
- 
 }
 

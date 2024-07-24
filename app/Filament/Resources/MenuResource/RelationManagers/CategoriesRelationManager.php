@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\MenuResource\RelationManagers;
 
 use App\Models\Category;
+use Filament\Actions\CreateAction;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
@@ -25,10 +26,16 @@ class CategoriesRelationManager extends RelationManager
                 Forms\Components\TextInput::make('name'),
                 Forms\Components\Select::make('categories')
                     ->label('category')
-                    ->options(Category::get()->pluck('name','id'))
+                    ->options(Category::get()->pluck('name', 'id'))
                     ->searchable()
                     ->required(),
-                  
+                CreateAction::make()
+                    ->mutateFormDataUsing(function (array $data): array {
+                       
+
+                        return $data;
+                    })
+
             ]);
     }
 
@@ -38,7 +45,6 @@ class CategoriesRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('id'),
             ])
             ->filters([
                 //

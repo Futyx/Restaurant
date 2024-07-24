@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Darryldecode\Cart\Facades\Cart;
+
 
 class GuidController extends Controller
 {
@@ -50,5 +52,27 @@ class GuidController extends Controller
 
 
         return view('tailwind.guid', ['menus' => $menus, 'categories' => $categories]);
+    }
+
+    public function store(Request $request){  
+
+
+        dd($request->toArray());
+        // $item = Menu::find($request->menu_id);  
+        // $rowId = 500;  
+        // $userId = 1;  
+    
+        // $cart = \Cart::session($userId)->add(array(  
+        //     'id' => $rowId,  
+        //     'name' => $item->name,  
+        //     'price' => $item->price,  
+        //     'quantity' => $request->quantity, 
+        //     'attributes' => array(),  
+        //     'associatedModel' => $item  
+        // ));  
+    
+        // $cartCollection = \Cart::getContent();  
+    
+        // dd($cartCollection->toArray()); 
     }
 }

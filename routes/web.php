@@ -34,13 +34,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('order', [OrderController::class, 'index'])->name('order');
+
+Route::get('menu', [MenuController::class, 'index'])->name('menu');
+Route::post('menu', [MenuController::class, 'addToCart'])->name('menu.store');
+
+Route::get('order', [OrderController::class, 'index'])->name('order');  
+Route::post('order', [OrderController::class, 'store'])->name('order.store');  
+
+
+
 Route::get('about', [AboutUsController::class, 'index'])->name('about');
 Route::get('contact', [AboutUsController::class, 'index'])->name('contact');
-Route::get('menu', [MenuController::class, 'index'])->name('menu');
-Route::post('order', [MenuController::class, 'create'])->name('order');
+
 
 Route::get('guid', [GuidController::class, 'index'])->name('guid');
+Route::post('guid', [GuidController::class, 'store'])->name('guid.store');
+Route::get('cart', [MenuController::class, 'create'])->name('cart');
 
 
 require __DIR__.'/auth.php';
